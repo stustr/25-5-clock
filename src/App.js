@@ -9,11 +9,11 @@ import "./App.scss";
 
 function App() {
   // set states
-  const [breakLength, setBreakLength] = useState(5);
+  const [breakLength, setBreakLength] = useState(10/60);
   const [sessionLength, setSessionLength] = useState(25);
   const [live, setLive] = useState(false);
   const [timerType, setTimerType] = useState("Session");
-  const [timerDur, setTimerDur] = useState(60 * 25);
+  const [timerDur, setTimerDur] = useState(10);
   const audio = document.getElementById("beep");
 
   // variables
@@ -81,31 +81,21 @@ function App() {
   };
 
   const liveSwitch = () => {
-    clearTimeout(timeout);
     setLive(!live);
   };
 
-  const goLive = () => {
-    if (live) {
-      console.log("we are live");
-      timeout();
-      timerLoop();
-    } else {
-      console.log("not live");
-      clearTimeout(timeout);
-    }
-  };
-
-  const timeout = () => {
-    setTimeout(() => {
-      setTimerDur(timerDur - 1);
-    }, 1000);
-  };
-
   useEffect(() => {
-    goLive();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [liveSwitch]);
+    if (live) {
+      const timeout = setTimeout(() => {
+        setTimerDur(timerDur - 1);
+      }, 1000);
+      timerLoop();
+      return () => {
+        clearTimeout(timeout)
+      }
+    }
+  }, [liveSwitch])
+  
 
   return (
     <div className="App">
