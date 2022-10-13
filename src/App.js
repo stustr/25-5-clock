@@ -1,19 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import { faPause } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp, faArrowDown, faArrowsRotate, faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import "./App.scss";
 
 function App() {
   // set states
-  const [breakLength, setBreakLength] = useState(10/60);
+  const [breakLength, setBreakLength] = useState(5);
   const [sessionLength, setSessionLength] = useState(25);
   const [live, setLive] = useState(false);
   const [timerType, setTimerType] = useState("Session");
-  const [timerDur, setTimerDur] = useState(10);
+  const [timerDur, setTimerDur] = useState(150);
   const audio = document.getElementById("beep");
 
   // variables
@@ -22,6 +18,7 @@ function App() {
   // functions
   function breakInc() {
     if (breakLength < 60) {
+      reset();
       setBreakLength(breakLength + 1);
     }
   }
@@ -77,6 +74,7 @@ function App() {
       setTimerDur(sessionLength * 60);
       setTimerType("Session");
       audio.pause();
+      audio.currentTime = 0;
     }
   };
 
@@ -94,7 +92,8 @@ function App() {
         clearTimeout(timeout)
       }
     }
-  }, [liveSwitch])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [liveSwitch, sessInc])
   
 
   return (

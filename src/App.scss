@@ -18,6 +18,7 @@
     text-align: center;
     color: whitesmoke;
     margin: 10px;
+    border-radius: 5px;
   }
   
   .pom1 {
@@ -28,7 +29,7 @@
   
   .pom2 {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 1fr 2fr 1fr 1fr 2fr 1fr;
   }
   
   .pom5 {
@@ -39,5 +40,15 @@
   #timer-label {
     font-weight: bolder;
     font-size: x-large;
+  }
+  
+  #break-increment, #break-decrement, #session-decrement, #session-increment {
+    background-color: orange;
+    color: darkslategray  
+  }
+  
+  #start_stop, #reset {
+    background-color: orange;
+    color: darkslategray
   }
 }
