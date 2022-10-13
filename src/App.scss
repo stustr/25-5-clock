@@ -1,0 +1,43 @@
+.App {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: whitesmoke;
+  
+  .Pomo-timer {
+    display: grid;
+    margin: 50px;
+    background-color: black;
+    border-radius: 10px;
+  }
+  
+  .buttons {
+    background-color: #007cb9;
+    padding: 15px 30px;
+    border: none;
+    text-align: center;
+    color: whitesmoke;
+    margin: 10px;
+  }
+  
+  .pom1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-weight: bold;
+  }
+  
+  .pom2 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  .pom5 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  #timer-label {
+    font-weight: bolder;
+    font-size: x-large;
+  }
+}
